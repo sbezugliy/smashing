@@ -29,5 +29,5 @@ end
 if continue
   Smashing::App.config.month = result[:month]
   Smashing::App.config.resolution = result[:resolution]
-  Smashing::Runner.new() 
+  Smashing::Runner.new
 end

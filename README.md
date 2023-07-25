@@ -35,7 +35,7 @@ As example:
 
 Default values is 
 
-## Advanced configuration 
+### Advanced configuration 
 
 You able to adjust some default configuration options at the `/lib/smashing/app.rb`
 
@@ -58,6 +58,26 @@ You able to adjust some default configuration options at the `/lib/smashing/app.
   end
 
 ```
-### Author
+
+## Tests
+
+```shell
+  bundle exec rspec
+```
+
+## Lint
+
+```shell
+  bundle exec rubocop
+```
+
+## ToDo
+
+Additional possible features:
+
+- Multithreaded downlod mode;
+- Implement background jobs/Sidekiq for high amount of objects;
+
+## Author
 
 Sergey Bezugliy<s.bezugliy@gmail.com>

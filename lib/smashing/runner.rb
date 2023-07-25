@@ -4,7 +4,7 @@ module Smashing
   class Runner
     attr_reader :html_page, :image_links, :images
 
-    def initialize()
+    def initialize
       @month = App.month[0..1]
       @year = App.month[2..5]
       @resolution = App.resolution

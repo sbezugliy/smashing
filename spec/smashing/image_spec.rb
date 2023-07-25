@@ -13,11 +13,16 @@ RSpec.describe(Smashing::Image) do
         headers: {
           "Accept" => "*/*",
           "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
-       	  'Content-Type'=>'image/png',
-       	  'User-Agent'=>'Ruby'
+          "Content-Type" => "image/png",
+          "User-Agent" => "Ruby",
         },
       )
-      .to_return(status: 200, body: File.open("spec/mocks/images/june-19-melting-away-nocal-640x480.png", "r"), headers: {})
+      .to_return(status: 200,
+        body: File.open(
+          "spec/mocks/images/june-19-melting-away-nocal-640x480.png",
+          "r",
+        ),
+        headers: {})
   end
 
   describe "#initialize" do
