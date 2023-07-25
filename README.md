@@ -1,5 +1,9 @@
 # Smashing wallpaper downloader
 
+Intentful.ai code challenge.
+
+[Task](https://github.com/places-dot/code-challenge)
+
 ## Requirements
 
 > Ruby "~> 3.2.2"
