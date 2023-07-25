@@ -13,6 +13,7 @@ module Smashing
     def run
       get_page
       extract_links
+      download_images
     end
     
     private
@@ -22,10 +23,11 @@ module Smashing
     end
     
     def extract_links
-      @image_links = ImageLinkExtractor.new(@html_page, @resolution)
+      @image_links = ImageLinkExtractor.new(@html_page, @resolution).images
     end
     
     def download_images
+      Downloader.new(@image_links)
     end
   end
 end

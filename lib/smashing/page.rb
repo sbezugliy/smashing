@@ -1,3 +1,4 @@
+
 module Smashing
   class Page < ::Faraday::Connection
 

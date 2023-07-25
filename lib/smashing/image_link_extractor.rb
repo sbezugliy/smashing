@@ -1,26 +1,29 @@
 module Smashing
   class ImageLinkExtractor
     
-    attr_writer :page
-    attr_accessor :images
+    attr_reader :images
     
     def initialize(page, resolution)
-      @page = Nokogiri::HTML(page)
       @images = []
-      parse
-    end
-    
-    def parse
+      @resolution = resolution
+      @page = parse(page)
       find_links
     end
     
     private
+
+    def parse(page)
+      Nokogiri::HTML(page)
+    end
     
     def find_links
       @page.css('li > a').each do |link|
-        pp link['href']
-        (@images << link['href']) if /^.*\/files\/wallpapers\/.*640x480.*$/.match(link['href'])
+        (@images << link['href']) if wallpaper?(link['href'])
       end
+    end
+    
+    def wallpaper?(url)
+      /^.*\/files\/wallpapers\/.*#{@resolution}.*$/.match(url)
     end
   end
 end

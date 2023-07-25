@@ -6,13 +6,18 @@ PATH
       faraday
       faraday_middleware
       nokogiri
+      ox
       slop
 
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.8.4)
+      public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     concurrent-ruby (1.2.2)
+    crack (0.4.5)
+      rexml
     diff-lcs (1.5.0)
     dry-configurable (1.1.0)
       dry-core (~> 1.0, < 2)
@@ -25,15 +30,18 @@ GEM
       ruby2_keywords
     faraday_middleware (1.2.0)
       faraday (~> 1.0)
+    hashdiff (1.0.1)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
     multipart-post (2.3.0)
     nokogiri (1.15.3-x86_64-darwin)
       racc (~> 1.4)
+    ox (2.14.17)
     parallel (1.23.0)
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
+    public_suffix (5.0.3)
     racc (1.7.1)
     rainbow (3.1.1)
     rake (13.0.6)
@@ -81,6 +89,10 @@ GEM
     ruby2_keywords (0.0.5)
     slop (4.10.1)
     unicode-display_width (2.4.2)
+    webmock (3.18.1)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     zeitwerk (2.6.8)
 
 PLATFORMS
@@ -94,6 +106,7 @@ DEPENDENCIES
   rubocop-rspec
   rubocop-shopify
   smashing!
+  webmock
 
 BUNDLED WITH
    2.4.17
