@@ -4,6 +4,10 @@ Intentful.ai code challenge.
 
 [Task](https://github.com/places-dot/code-challenge)
 
+## Status
+
+[![Ruby](https://github.com/sbezugliy/smashing/actions/workflows/main.yml/badge.svg)](https://github.com/sbezugliy/smashing/actions/workflows/main.yml)
+
 ## Requirements
 
 > Ruby "~> 3.2.2"
