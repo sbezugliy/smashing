@@ -1,60 +1,48 @@
-require 'thread'
+# frozen_string_literal: true
 
-module Smashing 
+require "thread"
+
+module Smashing
   class Downloader
-  
     def initialize(images, path = App.destination_folder)
       @images = images
       @path = path
-      @files = []
-      @counter = @images.count
-      @jobs = Thread::SizedQueue.new(App.downloader_threads)
-
+      @stats = { downloaded: 0, failed: 0 }
+      ensure_path
       run
     end
-    
+
     private
-    
-    def run
-      @runner = []
-      @downloader = [] 
-      downloader
-      runner
-      @runner_thread.join
-      @downloader.each(&:join)
-    end
-    
-    def download(image)
-      http_conn = Faraday.new do |builder|
-        builder.adapter Faraday.default_adapter
-      end 
-      pp image
-      http_conn.get(image).body
-    end
-    
-    def save(image)
-      File.open(Pathname.join(@path, image), 'wb') { |fp| fp.write(image) }
+
+    def ensure_path
+      FileUtils.mkdir_p(@path)
     end
 
-    def runner
-      @runner_thread = Thread.new(@jobs) do |job|
-        puts "  Start #{Time.now}"
-        @images.each do |image|
-          job.push(image)
-        end 
-        puts "  Stop #{Time.now}"
-      end.join
-    end
-    
-    def downloader
-      App.downloader_threads.times do
-        @downloader << Thread.new(@jobs) do |job|
-          puts "  Start #{Time.now}"
-          save(download(job.pop))
-          puts "  Stop #{Time.now}"
-        end 
+    def run
+      @images.each do |image_url|
+        image_url = URI(image_url)
+        download(image_url)
       end
+      puts "\nDownloaded: #{@stats[:downloaded]}, Failed: #{@stats[:failed]}\n\n"
+    end
+
+    def download(image_url)
+      puts("\n* Downloading #{image_url}")
+      resource = Image.new(image_url).resource
+      if resource.status != 200
+        puts "! Download failed HTTP Status is #{resource.status}"
+        @stats[:failed] += 1
+      else
+        puts "  Fetched with HTTP Status #{resource.status}"
+        save(resource.body, File.basename(image_url.path))
+        @stats[:downloaded] += 1
+      end
+    end
+
+    def save(image, filename)
+      dest = File.join(@path, filename)
+      puts("  Saving to: #{dest}")
+      File.open(dest, "wb") { |fp| fp.write(image) }
     end
   end
 end
-

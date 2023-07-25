@@ -7,17 +7,17 @@ require "smashing"
 
 opts = Slop::Options.new
 opts.banner = "Smashing wallpaper downloader for defined month of year and resolution."
-opts.separator ""
-opts.separator "Options"
-opts.string "-m", "-month", "Enter month and year in format: <MMYYYY>, example: 072019"
-opts.string "-r", "-resolution", "Enter image resolution in format: `<WIDTH>x<HEIGHT>`, example: `1920x1080`"
+opts.separator("")
+opts.separator("Options")
+opts.string("-m", "-month", "Enter month and year in format: <MMYYYY>, example: 072019")
+opts.string("-r", "-resolution", "Enter image resolution in format: `<WIDTH>x<HEIGHT>`, example: `1920x1080`")
 
 parser = Slop::Parser.new(opts)
 result = parser.parse(ARGV).to_hash
 
 continue = true
 unless /^\d{6}$/.match(result[:month])
-  p "Wrong month format, should be 5 digits: <MMYYYY>, example: 072019" 
+  p "Wrong month format, should be 5 digits: <MMYYYY>, example: 072019"
   continue = false
 end
 
@@ -26,4 +26,8 @@ unless /^\d{2,6}x\d{2,6}$/.match(result[:resolution])
   continue = false
 end
 
-::Smashing::Runner.new(**result) if continue
+if continue
+  Smashing::App.config.month = result[:month]
+  Smashing::App.config.resolution = result[:resolution]
+  Smashing::Runner.new() 
+end

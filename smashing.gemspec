@@ -32,22 +32,23 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
-  spec.add_dependency 'faraday'
-  spec.add_dependency 'ox'
+  spec.add_dependency("faraday")
+  spec.add_dependency("ox")
 
-  spec.add_dependency 'dry-configurable'
-  spec.add_dependency 'slop'
-  spec.add_dependency 'faraday_middleware'
-  spec.add_dependency 'nokogiri'
-  
-  spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_development_dependency "webmock"
-  spec.add_development_dependency "rubocop"
+  spec.add_dependency("dry-configurable")
+  spec.add_dependency("faraday_middleware")
+  spec.add_dependency("mimemagic")
+  spec.add_dependency("nokogiri")
+  spec.add_dependency("slop")
 
-  spec.add_development_dependency "rubocop-rake"
-  spec.add_development_dependency "rubocop-rspec"
-  spec.add_development_dependency "rubocop-shopify"
+  spec.add_development_dependency("rake", "~> 13.0")
+  spec.add_development_dependency("rspec", "~> 3.0")
+  spec.add_development_dependency("rubocop")
+  spec.add_development_dependency("webmock")
+
+  spec.add_development_dependency("rubocop-rake")
+  spec.add_development_dependency("rubocop-rspec")
+  spec.add_development_dependency("rubocop-shopify")
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
 end
