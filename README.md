@@ -6,7 +6,7 @@ Intentful.ai code challenge.
 
 ## Status
 
-[![Ruby](https://github.com/sbezugliy/smashing/actions/workflows/main.yml/badge.svg)](https://github.com/sbezugliy/smashing/actions/workflows/main.yml)
+[![Ruby](https://github.com/sbezugliy/smashing/actions/workflows/Test%20and%20Lint.yml/badge.svg)](https://github.com/sbezugliy/smashing/actions/workflows/Test%20and%20Lint.yml)
 
 ## Requirements
 
